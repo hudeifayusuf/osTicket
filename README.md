@@ -18,6 +18,7 @@ Download required installation files:
 - [osTicket-Installation-Files.zip](https://drive.google.com/uc?export=download&id=1b3RBkXTLNGXbibeMuAynkfzdBC1NnqaD)
 
 <br>
+
 ---
 
 ## Create and Connect to the VM
