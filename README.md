@@ -15,7 +15,7 @@ Set up a working osTicket helpdesk ticketing system hosted on a Windows Server v
 
 Download required installation files:
 
-- [Download Package](https://drive.google.com/uc?export=download&id=1b3RBkXTLNGXbibeMuAynkfzdBC1NnqaD)
+- [osTicket-Installation-Files.zip](https://drive.google.com/uc?export=download&id=1b3RBkXTLNGXbibeMuAynkfzdBC1NnqaD)
 
 ---
 
