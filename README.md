@@ -1,4 +1,4 @@
-# Installing and Configuring osTicket on Windows Server (GCP)
+# Installing and Configuring osTicket on Windows Server
 
 ## Overview
 
