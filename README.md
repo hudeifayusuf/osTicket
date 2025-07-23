@@ -63,8 +63,8 @@ Install-WindowsFeature `
 ```
 
 - Confirm installation:  
-  Open a browser on the VM and go to `http://localhost`  
-  You should see the IIS Welcome page.
+  - Open a browser on the VM and go to `http://localhost`  
+  - You should see the IIS Welcome page.
 
 ### 2. Prepare osTicket Installation Files
 
