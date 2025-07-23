@@ -91,18 +91,15 @@ Install-WindowsFeature `
 
 ### 2. Configure PHP in IIS
 
-- Open **IIS Manager** as Administrator  
-- Go to **PHP Manager** (under the Default Web Site)  
-- Under **PHP Setup**, click **Register new PHP version**  
-- Set the executable path to:  
-  `C:\PHP\php-cgi.exe`  
-- Restart IIS using:
+- Open IIS Manager as Administrator  
+- Go to PHP Manager (under the Default Web Site)  
+- Under PHP Setup, click Register new PHP version  
+- Set the executable path to `C:\PHP\php-cgi.exe`  
+- Restart IIS by running the following command in CMD (as Administrator):
 
 ```cmd
 iisreset
 ```
-
-(from Command Prompt as Administrator)
 
 ### 3. Deploy osTicket
 
