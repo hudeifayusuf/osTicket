@@ -79,12 +79,12 @@ Install-WindowsFeature `
 ### 1. Install PHP & Other Dependencies
 
 - From the `osTicket-Installation` folder:  
-  - Install *PHP Manager for IIS* (`PHPManagerForIIS_V1.5.0.msi`)  
-  - Install **IIS URL Rewrite Module** (`rewrite_amd64_en-US.msi`)  
+  - Install PHP Manager for IIS (`PHPManagerForIIS_V1.5.0.msi`)  
+  - Install IIS URL Rewrite Module (`rewrite_amd64_en-US.msi`)  
   - Create a new folder: `C:\PHP`  
   - Extract `php-7.3.8-nts-Win32-VC15-x86.zip` into `C:\PHP`  
-  - Install **Microsoft Visual C++ Redistributable** (`VC_redist.x86.exe`)  
-  - Install **MySQL 5.5.62** (`mysql-5.5.62-win32.msi`)  
+  - Install Microsoft Visual C++ Redistributable (`VC_redist.x86.exe`)  
+  - Install MySQL 5.5.62 (`mysql-5.5.62-win32.msi`)  
     - Choose Typical Setup  
     - Select Standard Configuration  
     - Set Username: `root`, Password: `root`  
