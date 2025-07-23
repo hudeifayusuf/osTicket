@@ -5,13 +5,11 @@ Set up a working osTicket helpdesk ticketing system hosted on a Windows Server v
 ## Environments and Technologies
 
 - Google Cloud Platform (GCP)
-- Windows Server 2022
-- Windows 10 Pro (RDP client)
-- IIS (Internet Information Services)
-- MySQL Database
+- Windows Server 2019
+- osTicket
+- MySQL
 - PHP
-- osTicket v1.15.8
-- Remote Desktop Protocol (RDP)
+- RDP
 
 ---
 
