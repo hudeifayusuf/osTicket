@@ -11,8 +11,6 @@ Set up a working osTicket helpdesk ticketing system hosted on a Windows Server v
 - PHP
 - RDP
 
----
-
 ## Installation Files
 
 Download required installation files:
@@ -33,11 +31,11 @@ Download required installation files:
    - Use *Set Windows password* to create credentials  
    - Use Remote Desktop (RDP) to log into the VM  
 
----
+<br>
 
 ## Install Required Components
 
-### 1. Install IIS & CGI on Windows Server (GCP-specific)
+### 1. Install IIS & CGI on Windows Server
 
 - Open PowerShell as Administrator and run:
 
