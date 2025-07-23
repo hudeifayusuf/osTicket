@@ -21,112 +21,187 @@ Download required installation files:
 
 ---
 
-## Part 1: VM Setup
+## Create and Connect to the VM
 
-1. **Create a Windows Server VM** in Google Cloud Platform (choose Windows Server 2022).
-2. **Connect via RDP** using the Microsoft Remote Desktop Client from Windows or macOS.
+1. **Provision a VM in GCP**  
+   - Name: `osticket-vm`  
+   - Region: Your closest region  
+   - Machine Type: `e2-medium` (2 vCPU, 4 GB RAM)  
+   - OS: Windows Server 2019  
 
----
-
-## Part 2: Configure IIS and PHP
-
-### Step 1: Install IIS & Enable CGI
-
-1. Open **Server Manager**
-2. Go to `Manage > Add Roles and Features`
-3. Select:
-   - **Web Server (IIS)**
-   - Under **Application Development**, enable:
-     - CGI
-
-### Step 2: Install PHP
-
-1. Extract and move the PHP folder to `C:\PHP`
-2. Add `C:\PHP` to **System Environment Variables** > `Path`
-3. Configure `php.ini` and enable:
-   - `extension=mysqli`
-   - `extension=gd`
+2. **Connect via RDP**  
+   - Use *Set Windows password* to create credentials  
+   - Use Remote Desktop (RDP) to log into the VM  
 
 ---
 
-## Part 3: Configure MySQL
+## Install Required Components
 
-1. Install MySQL
-2. During setup, set a root password (save it securely)
-3. Create a database named `osTicket` using MySQL Shell or Workbench
+### 1. Install IIS & CGI on Windows Server (GCP-specific)
 
----
+- Open PowerShell as Administrator and run:
 
-## Part 4: Install osTicket
-
-### Step 1: Extract Files
-
-- Extract `osTicket-v1.15.8.zip` into `C:\inetpub\wwwroot\osTicket`
-
-### Step 2: Rename Configuration File
-
-Rename:
-
-```text
-From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php  
-To:   C:\inetpub\wwwroot\osTicket\include\ost-config.php
+```powershell
+Install-WindowsFeature -Name Web-Server, Web-CGI -IncludeManagementTools
 ```
 
-### Step 3: Set Permissions
+- Install extra IIS components needed for PHP and osTicket:
 
-Give full permissions to `IIS_IUSRS` for the following folders:
+```powershell
+Install-WindowsFeature `
+  Web-Server, `
+  Web-CGI, `
+  Web-Common-Http, `
+  Web-Default-Doc, `
+  Web-Dir-Browsing, `
+  Web-Http-Errors, `
+  Web-Static-Content, `
+  Web-ISAPI-Ext, `
+  Web-ISAPI-Filter, `
+  Web-Mgmt-Console `
+  -IncludeManagementTools
+```
 
-- `C:\inetpub\wwwroot\osTicket\include`
-- `C:\inetpub\wwwroot\osTicket\include\ost-config.php`
+- Confirm installation:  
+  Open a browser on the VM and go to `http://localhost`  
+  You should see the IIS Welcome page.
+
+### 2. Prepare osTicket Installation Files
+
+- Download the ZIP archive `osTicket-Installation-Files.zip`  
+- Extract (unzip) the contents  
+- Rename the extracted folder to `osTicket-Installation`
 
 ---
 
-## Part 5: Web-Based Setup
+## Install osTicket and Required Dependencies
 
-### Access Installation URL
+### 1. Install PHP & Other Dependencies
 
+- From the `osTicket-Installation` folder:  
+  - Install **PHP Manager for IIS** (`PHPManagerForIIS_V1.5.0.msi`)  
+  - Install **IIS URL Rewrite Module** (`rewrite_amd64_en-US.msi`)  
+  - Create a new folder: `C:\PHP`  
+  - Extract `php-7.3.8-nts-Win32-VC15-x86.zip` into `C:\PHP`  
+  - Install **Microsoft Visual C++ Redistributable** (`VC_redist.x86.exe`)  
+  - Install **MySQL 5.5.62** (`mysql-5.5.62-win32.msi`)  
+    - Choose Typical Setup  
+    - Select Standard Configuration  
+    - Set Username: `root`, Password: `root`  
+
+### 2. Configure PHP in IIS
+
+- Open **IIS Manager** as Administrator  
+- Go to **PHP Manager** (under the Default Web Site)  
+- Under **PHP Setup**, click **Register new PHP version**  
+- Set the executable path to:  
+  `C:\PHP\php-cgi.exe`  
+- Restart IIS using:
+
+```cmd
+iisreset
 ```
-http://<VM_Public_IP>/osTicket
-```
 
-### Fill in Required Fields
+(from Command Prompt as Administrator)
 
-- **System Settings** – Fill in with your own entries
-- **Admin User** – Fill in with your own credentials
-- **Database Settings**:
+### 3. Deploy osTicket
 
-  ```
-  MySQL Database: osTicket
-  MySQL Username: root
-  MySQL Password: [your_root_password]
-  ```
+- From the `osTicket-Installation` folder, unzip `osTicket-v1.15.8.zip`  
+- Copy the `upload` folder to `C:\inetpub\wwwroot`  
+- Rename `upload` to `osTicket`  
+- Restart IIS  
 
-Click **Install Now**
+### 4. Enable PHP Extensions
+
+- In **IIS Manager**, navigate to:  
+  `Default Web Site > osTicket`  
+- Open **PHP Manager**  
+- Enable the following extensions:  
+  - `php_imap.dll`  
+  - `php_intl.dll`  
+  - `php_opcache.dll`  
+- Restart IIS again
+
+---
+
+## Configure osTicket
+
+### 1. Prepare the Config File
+
+- Rename `ost-sampleconfig.php` to `ost-config.php`:  
+  From:  
+  `C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php`  
+  To:  
+  `C:\inetpub\wwwroot\osTicket\include\ost-config.php`
+
+- Set permissions on `ost-config.php`:  
+  - Right-click → Properties → Security tab  
+  - Disable inheritance  
+  - Remove existing entries  
+  - Add **Everyone** with Full Control  
+
+### 2. Create the Database with HeidiSQL
+
+- Install HeidiSQL from the `osTicket-Installation` folder  
+- Open HeidiSQL and create a new session:  
+  - Username: `root`  
+  - Password: `root`  
+- Open the session and create a new database named `osTicket`
+
+### 3. Complete osTicket Setup in Browser
+
+- Open browser and go to:  
+  `http://localhost/osTicket/`  
+- Fill in required fields:  
+  - **System Settings and Admin User:** Enter your own details  
+  - **Database Settings:**  
+    - Database Name: `osTicket`  
+    - Username: `root`  
+    - Password: `root`  
+- Click **Install Now**  
+- After installation, access osTicket:  
+  - Admin Panel: `http://localhost/osTicket/scp/login.php`  
+  - User Portal: `http://localhost/osTicket/`  
+
+### 4. Post-Install Cleanup
+
+- Delete the `setup` folder:  
+  `C:\inetpub\wwwroot\osTicket\setup`  
+- Set `ost-config.php` to Read-only:  
+  - Right-click → Properties → Check "Read-only" → Apply  
 
 ---
 
 ## Post-Installation Setup
 
-- Delete the `setup` folder at:  
-  `C:\inetpub\wwwroot\osTicket\setup`
+1. Configure Roles and Departments  
+   - Admin Panel → Agents → Roles → Add: **Supreme Admin**  
+   - Admin Panel → Agents → Departments → Add: **System Administrators**  
 
-### Access URLs
+2. Set Up Teams and Users  
+   - Teams: Add **Level I** and **Level II Support**  
+   - Agents: Add sample agents like **Jane** and **John**  
+   - Users: Add users like **Karen** and **Ken**  
 
-- **Staff Panel**: `http://<VM_Public_IP>/osTicket/scp`
-- **User Panel**: `http://<VM_Public_IP>/osTicket`
+3. Configure SLAs  
+   - Admin Panel → Manage → SLA  
+     - Sev-A: 1 hour, 24/7  
+     - Sev-B: 4 hours, 24/7  
+     - Sev-C: 8 hours, business hours  
+
+4. Create Help Topics  
+   - Add topics like:  
+     - Business Critical Outage  
+     - PC Issues  
+     - Password Reset  
+     - Equipment Request  
 
 ---
 
-## Part 6: Ticket Management Practice
+## Ticket Management Practice
 
-### As User
-
-- Log in and create a ticket using any Help Topic.
-
-### As Agent
-
-- Triage, assign, and resolve tickets.
-- Practice with different severity levels (e.g., Sev-A, Sev-B).
+- Log in as a user → Create a ticket with a help topic  
+- Log in as an agent → Assign, triage, and resolve based on SLA severity (Sev-A, B, C)
 
 ---
 
