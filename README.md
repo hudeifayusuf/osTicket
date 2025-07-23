@@ -166,22 +166,22 @@ iisreset
 
 ## Finalize Setup
 
-1. Configure Roles and Departments  
+### 1. Configure Roles and Departments  
    - Admin Panel → Agents → Roles → Add: `Supreme Admin`  
    - Admin Panel → Agents → Departments → Add: `System Administrators`  
 
-2. Set Up Teams and Users  
+### 2. Set Up Teams and Users  
    - Teams: Add `Level I` and `Level II Support`  
    - Agents: Add sample agents like `Jane` and `John`  
    - Users: Add users like `Karen` and `Ken`  
 
-3. Configure SLAs  
+### 3. Configure SLAs  
    - Admin Panel → Manage → SLA  
      - Sev-A: 1 hour, 24/7  
      - Sev-B: 4 hours, 24/7  
      - Sev-C: 8 hours, business hours  
 
-4. Create Help Topics  
+### 4. Create Help Topics  
    - Add topics like:  
      - `Business Critical Outage`  
      - `PC Issues`  
