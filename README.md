@@ -33,7 +33,7 @@ Download required installation files:
 
 <br>
 
-## Install Required Components
+## Install Required Windows Server Features
 
 ### 1. Install IIS & CGI on Windows Server
 
