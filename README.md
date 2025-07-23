@@ -79,7 +79,7 @@ Install-WindowsFeature `
 ### 1. Install PHP & Other Dependencies
 
 - From the `osTicket-Installation` folder:  
-  - Install **PHP Manager for IIS** (`PHPManagerForIIS_V1.5.0.msi`)  
+  - Install *PHP Manager for IIS* (`PHPManagerForIIS_V1.5.0.msi`)  
   - Install **IIS URL Rewrite Module** (`rewrite_amd64_en-US.msi`)  
   - Create a new folder: `C:\PHP`  
   - Extract `php-7.3.8-nts-Win32-VC15-x86.zip` into `C:\PHP`  
