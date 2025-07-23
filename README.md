@@ -110,32 +110,29 @@ iisreset
 
 ### 4. Enable PHP Extensions
 
-- In **IIS Manager**, navigate to:  
+- In IIS Manager, navigate to:  
   `Default Web Site > osTicket`  
-- Open **PHP Manager**  
+- Open PHP Manager  
 - Enable the following extensions:  
   - `php_imap.dll`  
   - `php_intl.dll`  
   - `php_opcache.dll`  
 - Restart IIS again
 
----
+<br>
 
-## Configure osTicket
+## Configure osTicket and Set Up Database
 
 ### 1. Prepare the Config File
 
 - Rename `ost-sampleconfig.php` to `ost-config.php`:  
-  From:  
-  `C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php`  
-  To:  
-  `C:\inetpub\wwwroot\osTicket\include\ost-config.php`
-
+  From: `C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php`  
+  To: `C:\inetpub\wwwroot\osTicket\include\ost-config.php`
 - Set permissions on `ost-config.php`:  
   - Right-click → Properties → Security tab  
   - Disable inheritance  
   - Remove existing entries  
-  - Add **Everyone** with Full Control  
+  - Add `Everyone` with Full Control  
 
 ### 2. Create the Database with HeidiSQL
 
@@ -147,38 +144,36 @@ iisreset
 
 ### 3. Complete osTicket Setup in Browser
 
-- Open browser and go to:  
-  `http://localhost/osTicket/`  
+- Open browser and go to `http://localhost/osTicket/`  
 - Fill in required fields:  
-  - **System Settings and Admin User:** Enter your own details  
-  - **Database Settings:**  
+  - System Settings and Admin User: Enter your details  
+  - Database Settings:  
     - Database Name: `osTicket`  
     - Username: `root`  
     - Password: `root`  
-- Click **Install Now**  
+- Click Install Now  
 - After installation, access osTicket:  
   - Admin Panel: `http://localhost/osTicket/scp/login.php`  
   - User Portal: `http://localhost/osTicket/`  
 
 ### 4. Post-Install Cleanup
 
-- Delete the `setup` folder:  
-  `C:\inetpub\wwwroot\osTicket\setup`  
+- Delete the `setup` folder `C:\inetpub\wwwroot\osTicket\setup`  
 - Set `ost-config.php` to Read-only:  
   - Right-click → Properties → Check "Read-only" → Apply  
 
----
+<br>
 
-## Post-Installation Setup
+## Finalize Setup
 
 1. Configure Roles and Departments  
-   - Admin Panel → Agents → Roles → Add: **Supreme Admin**  
-   - Admin Panel → Agents → Departments → Add: **System Administrators**  
+   - Admin Panel → Agents → Roles → Add: `Supreme Admin`  
+   - Admin Panel → Agents → Departments → Add: `System Administrators`  
 
 2. Set Up Teams and Users  
-   - Teams: Add **Level I** and **Level II Support**  
-   - Agents: Add sample agents like **Jane** and **John**  
-   - Users: Add users like **Karen** and **Ken**  
+   - Teams: Add `Level I` and `Level II Support`  
+   - Agents: Add sample agents like `Jane` and `John`  
+   - Users: Add users like `Karen` and `Ken`  
 
 3. Configure SLAs  
    - Admin Panel → Manage → SLA  
@@ -188,19 +183,19 @@ iisreset
 
 4. Create Help Topics  
    - Add topics like:  
-     - Business Critical Outage  
-     - PC Issues  
-     - Password Reset  
-     - Equipment Request  
+     - `Business Critical Outage`  
+     - `PC Issues`  
+     - `Password Reset`
+     - `Equipment Request`  
 
----
+<br>
 
-## Ticket Management Practice
+## Create and Manage Tickets
 
 - Log in as a user → Create a ticket with a help topic  
 - Log in as an agent → Assign, triage, and resolve based on SLA severity (Sev-A, B, C)
 
----
+<br>
 
 ## Acknowledgments
 
