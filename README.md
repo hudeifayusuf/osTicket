@@ -162,8 +162,8 @@ iisreset
 - Delete the `setup` folder `C:\inetpub\wwwroot\osTicket\setup`  
 - Reset permissions on `ost-config.php` to remove write access:
 ```cmd
-icacls "C:\inetpub\wwwroot\osTicket\include\ost-config.php" /reset 
-
+icacls "C:\inetpub\wwwroot\osTicket\include\ost-config.php" /reset
+```
 <br>
 
 ## Finalize Setup
