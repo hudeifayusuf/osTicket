@@ -107,8 +107,7 @@ iisreset
 
 - From the `osTicket-Installation` folder, unzip `osTicket-v1.15.8.zip`  
 - Copy the `upload` folder to `C:\inetpub\wwwroot`  
-- Rename `upload` to `osTicket`  
-- Restart IIS  
+- Rename `upload` to `osTicket`   
 
 ### 4. Enable PHP Extensions
 
@@ -146,8 +145,8 @@ iisreset
 
 ### 3. Complete osTicket Setup in Browser
 
-- Open browser and go to `http://localhost/osTicket/`  
-- Fill in required fields:  
+- Open browser and go to `http://localhost/osTicket/`
+- Click *Continue* and complete the required fields:  
   - System Settings and Admin User: Enter your details  
   - Database Settings:  
     - Database Name: `osTicket`  
