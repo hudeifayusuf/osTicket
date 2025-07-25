@@ -152,7 +152,7 @@ iisreset
     - Database Name: `osTicket`  
     - Username: `root`  
     - Password: `root`  
-- Click Install Now  
+- Click *Install Now*  
 - After installation, access osTicket:  
   - Admin Panel: `http://localhost/osTicket/scp/login.php`  
   - User Portal: `http://localhost/osTicket/`  
