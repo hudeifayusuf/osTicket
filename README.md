@@ -4,7 +4,7 @@
 
 # Installing and Configuring osTicket on Windows Server
 
-Set up a working osTicket helpdesk ticketing system hosted on a Windows Server virtual machine (VM) in Google Cloud Platform (GCP). This includes configuring IIS, PHP, MySQL, and related dependencies.
+Set up a fully functional osTicket helpdesk system hosted on a Windows Server virtual machine (VM) in Google Cloud Platform (GCP). This includes configuring IIS, PHP, MySQL, and related dependencies.
 
 ## Environments and Technologies
 
