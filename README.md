@@ -1,4 +1,6 @@
-![osTicket logo](osTicket.png)
+<div align=center>
+  <img src="osTicket.png" alt="osTicket logo">
+</div>
 # Installing and Configuring osTicket on Windows Server
 
 Set up a working osTicket helpdesk ticketing system hosted on a Windows Server virtual machine (VM) in Google Cloud Platform (GCP). This includes configuring IIS, PHP, MySQL, and related dependencies.
