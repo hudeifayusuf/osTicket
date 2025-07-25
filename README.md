@@ -160,8 +160,9 @@ iisreset
 ### 4. Post-Install Cleanup
 
 - Delete the `setup` folder `C:\inetpub\wwwroot\osTicket\setup`  
-- Set `ost-config.php` to Read-only:  
-  - Right-click → Properties → Check "Read-only" → Apply  
+- Reset permissions on `ost-config.php` to remove write access:
+```cmd
+icacls "C:\inetpub\wwwroot\osTicket\include\ost-config.php" /reset 
 
 <br>
 
